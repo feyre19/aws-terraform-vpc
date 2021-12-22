@@ -16,7 +16,7 @@ No requirements.
 ```hcl
 
 module "tlz-vpc" {
-  source                           = "https://github.com/feyre19/aws-terraform-vpc"
+  source                           = "git::https://github.com/feyre19/aws-terraform-vpc"
   create_vpc                       = var.create_vpc
   prefix                           = var.prefix
   environment                      = var.environment
