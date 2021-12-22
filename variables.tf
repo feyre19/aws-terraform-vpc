@@ -115,12 +115,12 @@ variable "tags" {
 
 variable "public_subnet_suffix" {
   description = "Suffix to append to public subnets name"
-  default     = ["public"]
+  #default     = ["public"]
 }
 
 variable "private_subnet_suffix" {
   description = "Suffix to append to private subnets name"
-  default     = ["private"]
+  #default     = ["private"]
 }
 
 variable "intra_subnet_suffix" {
@@ -168,4 +168,41 @@ variable "map_public_ip_on_launch" {
   description = "Should be false if you do not want to auto-assign public IP on launch"
   type        = bool
   default     = true
+}
+
+# Internet gateway, Nat gateway and VPN gateway
+
+variable "create_igw" {
+  description = "Controls if an Internet Gateway is created for public subnets and the related routes that connect them."
+  type        = bool
+  default     = true
+}
+
+variable "enable_nat_gateway" {
+  description = "Should be true if you want to provision NAT Gateways for each of your private networks"
+  type        = bool
+  default     = true
+}
+
+variable "connectivity_type" {
+  description = "(Optional) Connectivity type for the gateway. Valid values are private and public. Defaults to public."
+  default     = "public"
+}
+
+variable "enable_vpn_gateway" {
+  description = "Should be true if you want to create a new VPN Gateway resource and attach it to the VPC"
+  type        = bool
+  default     = true
+}
+
+variable "amazon_side_asn" {
+  description = "The Autonomous System Number (ASN) for the Amazon side of the gateway. By default the virtual private gateway is created with the current default Amazon ASN."
+  type        = string
+  default     = null
+}
+
+variable "vpn_gateway_az" {
+  description = "The Availability Zone for the VPN Gateway"
+  type        = string
+  default     = null
 }

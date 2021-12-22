@@ -1,5 +1,5 @@
 resource "aws_vpc" "tlz_vpc" {
-  count = var.create_vpc ? 1 : 0
+  count                            = var.create_vpc ? 1 : 0
   cidr_block                       = var.cidr
   instance_tenancy                 = var.instance_tenancy
   enable_dns_hostnames             = var.enable_dns_hostnames
@@ -16,7 +16,7 @@ resource "aws_vpc" "tlz_vpc" {
 }
 
 resource "aws_vpc_dhcp_options" "tlz_vpc_dhcp_options" {
-  count = var.create_vpc && var.enable_dhcp_options ? 1 : 0
+  count                = var.create_vpc && var.enable_dhcp_options ? 1 : 0
   domain_name          = var.dhcp_options_domain_name
   domain_name_servers  = var.dhcp_options_domain_name_servers
   ntp_servers          = var.dhcp_options_ntp_servers
@@ -31,7 +31,7 @@ resource "aws_vpc_dhcp_options" "tlz_vpc_dhcp_options" {
 }
 
 resource "aws_vpc_dhcp_options_association" "tlz_vpc_dhcp_options_association" {
-  count = var.create_vpc && var.enable_dhcp_options ? 1 : 0
+  count           = var.create_vpc && var.enable_dhcp_options ? 1 : 0
   vpc_id          = aws_vpc.tlz_vpc[0].id
   dhcp_options_id = aws_vpc_dhcp_options.tlz_vpc_dhcp_options[0].id
 }
